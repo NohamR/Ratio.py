@@ -83,8 +83,8 @@ class process_torrent():
             peers.append((ip, port))
         self.interval = response['interval']
 
-def seedqueue(queue):
-    while True:
+def seedqueue(queue, time):
+    while time > 0:
         waitingqueue = ""
         for torrent in queue:
             if torrent.timer <= 0:
@@ -113,3 +113,4 @@ def seedqueue(queue):
         os.system('cls' if os.name == 'nt' else 'clear')
         print(waitingqueue)
         sleep(1)
+        time -= 1
